@@ -49,7 +49,7 @@ if((isset($_POST['nome'])) && (isset($_POST['idade']))){
 			echo "Categoria: Adulto!";
 			break;
 		default:
-			echo "Não foi possível definiar a categoria!";
+			echo "Não foi possível definir a categoria!";
 			break;
 	}	
 
