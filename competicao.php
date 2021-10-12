@@ -1,4 +1,6 @@
-<?php session_start(); ?>
+<?php
+session_start();
+?>
 
 
 <!DOCTYPE html>
@@ -12,7 +14,7 @@
 </head>
 <body>
 	
-	<form action="#" method="post">
+	<form action="result.php" method="post">
 		<fieldset>
 			<legend>Competidores</legend>
 			
@@ -26,69 +28,8 @@
 			
 		</fieldset>
 	</form>
-	
-	<?php
-				
-		$mensagemErro = isset($_SESSION['mensagem-erro']) ? $_SESSION['mensagem-erro'] : "";
-		echo $mensagemErro;
-						
-	?>
-	
-	<hr>
-<?php
-
-		
-	if(empty($_POST['nome'])){
-		$_SESSION['mensagem-erro'] = "O nome não pode ser vazio!<br>";
-	}
-	if(empty($_POST['idade'])){
-		$_SESSION['mensagem-erro'] = "A idade não pode ser vazia!<br>";
-	}	
 
 
-
-
-if((!empty($_POST['nome'])) && (!empty($_POST['idade']))){
-			
-		$nome = filter_var($_POST['nome'], FILTER_SANITIZE_STRING);
-		$idade = filter_var($_POST['idade'], FILTER_SANITIZE_NUMBER_INT);
-		
-		echo "Nome: $nome (".gettype($nome).")<br>";
-		echo "Idade: $idade (".gettype($idade).")<br>";
-				
-
-
-		switch($idade){
-			case ($idade < 6):
-				echo "Menores de 6 anos não podem competir!";
-				break;
-			case ($idade >= 6 && $idade <=12):
-				echo "Categoria: Infantil!";
-				break;
-			case ($idade >= 13 && $idade <=18 ):
-				echo "Categoria: Adolescente!";
-				break;
-			case ($idade > 18):
-				echo "Categoria: Adulto!";
-				break;
-			default:
-				echo "Não foi possível definir a categoria!";
-				break;
-		}			
-
-		unset($_SESSION['mensagem-erro']);
-
-	}else{
-		$_SESSION['mensagem-erro'] = "Verifique os dados e tente novamente!";		
-	}
-
-	
-
-
-
-
-
-?>
 
 
 
