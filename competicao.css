@@ -1,0 +1,30 @@
+*{
+	margin: 0;
+	padding: 0;
+}
+
+body{
+	font-family: Arial, Helvetica, sans-serif;
+}
+
+form{
+	margin: 30px;	
+	width: 300px;
+	background-color: rgb(230, 227, 227);
+}
+
+form #subm{
+	margin: 10px;
+	padding: 5px;
+} 
+
+form legend{
+	margin-left: 20px;
+	padding: 0 10px;
+	font-weight: bold;
+}
+
+form  li{
+	list-style: none;
+	margin: 20px;
+}
