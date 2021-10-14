@@ -2,45 +2,43 @@
 session_start();
 
 
+$validaNome = $validaIdade = true;
 
-if(empty($_POST['nome'])){
+$nome = $_POST['nome'];
+$idade = (int)$_POST['idade'];
+
+
+
+if(empty($nome)){
 	$_SESSION['erro'] = "O nome nao pode ser vazio!<br>";
-	
-}else if(empty($_POST['idade'])){
+	echo $_SESSION['erro'];	
+	$validaNome = false;	
+}else if((strlen($nome) < 2) || (strlen($nome) > 50)){
+	$_SESSION['erro'] = "O nome deve conter de 2 à 50 letras!<br>";	
+	echo $_SESSION['erro'];
+	$validaNome = false;
+}
+if(empty($idade)){
 	$_SESSION['erro'] = "A idade nao pode ser vazia!<br>";	
-	
-	
-} else{
-	$nome = $_POST['nome'];
-	$idade = $_POST['idade'];	
-	echo "Nome: $nome (".gettype($nome).")<br>";
-	echo "Idade: $idade (".gettype($idade).")<br>";
+	echo $_SESSION['erro'];
+	$validaIdade = false;	
+}else if($idade < 0 || $idade > 150){
+	$_SESSION['erro'] = "A idade deve ser entre 0 e 150 anos!<br>";	
+	echo $_SESSION['erro'];
+	$validaIdade = false;	
+}
+if(!is_numeric($idade)){
+	$_SESSION['erro'] = "A idade deve ser um numero inteiro!<br>";	
+	echo $_SESSION['erro'];
+	$validaIdade = false;	
 }
 
-echo "<br><br><button onclick='history.go(-1);'>Voltar</button>";
-echo "<hr>";
-echo "<pre>";
-var_dump($_SESSION);
-echo "</pre>";
-
-//$mensagemErro = isset($_SESSION['mensagem-erro']) ? $_SESSION['mensagem-erro'] : "";
 
 
-
-
-
-
-/*
-
-if((!empty($_POST['nome'])) && (!empty($_POST['idade']))){
+if($validaNome && $validaIdade){
 		
-	$nome = $_POST['nome'];
-	$idade = $_POST['idade'];
-	
 	echo "Nome: $nome (".gettype($nome).")<br>";
 	echo "Idade: $idade (".gettype($idade).")<br>";
-			
-
 	switch($idade){
 		case ($idade < 6):
 			echo "Menores de 6 anos não podem competir!";
@@ -58,6 +56,18 @@ if((!empty($_POST['nome'])) && (!empty($_POST['idade']))){
 			echo "Não foi possível definir a categoria!";
 			break;
 	}
+
 }
-*/
+
+
+echo "<br><br><button onclick='history.go(-1);'>Voltar</button>";
+echo "<hr>";
+echo "<pre>";
+var_dump($_SESSION);
+var_dump($_POST['nome']);
+var_dump($_POST['idade']);
+echo "</pre>";
+
+
+
 
