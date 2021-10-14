@@ -1,6 +1,5 @@
-<?php
-session_start();
-?>
+<?php session_start(); //iniciar sempre que for manipular sessões ?>
+
 
 
 <!DOCTYPE html>
@@ -23,6 +22,15 @@ session_start();
 			
 			<li><label for="idade">Idade:</label>
 			<input type="text" name="idade" id="idade"><br></li>
+			<div class="mensagem-erro">
+				<?php
+					$mensagem = isset($_SESSION['erro']) ? $_SESSION['erro'] : "";
+					if(!empty($_SESSION['erro'])){
+						echo $mensagem;
+					}
+					
+				?>
+			</div>
 			
 			<input type="submit" value="Enviar" id="subm">
 			

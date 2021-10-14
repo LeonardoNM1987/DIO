@@ -10,6 +10,7 @@ body{
 form{
 	margin: 30px;	
 	width: 300px;
+	margin: 50px auto;
 	
 }
 
@@ -27,4 +28,25 @@ form legend{
 form  li{
 	list-style: none;
 	margin: 20px;
+}
+
+.mensagem-erro{
+	width: 100%;	
+	text-align: center;
+	font-weight: bold;
+	font-size: 0.8em;
+	color: rgb(186, 0, 0);
+}
+
+.resultado{
+	width: 300px;
+	height: 300px;
+	text-align: center;
+	margin: 50px auto;
+	border: 1px gray solid;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	box-shadow: black 3px 3px 3px;
 }
