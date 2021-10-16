@@ -1,4 +1,7 @@
-<?php session_start(); //iniciar sempre que for manipular sessões ?>
+<?php session_start(); //iniciar sempre que for manipular sessões 
+require_once "servicos/servicoMsgSessao.php";
+require_once "servicos/servicoValidacao.php";
+?>
 
 
 
@@ -22,20 +25,50 @@
 			
 			<li><label for="idade">Idade:</label>
 			<input type="text" name="idade" id="idade"><br></li>
-			<div class="mensagem-erro">
-				<?php
-					$mensagem = isset($_SESSION['erro']) ? $_SESSION['erro'] : "";
-					if(!empty($_SESSION['erro'])){
-						echo $mensagem;
-					}
-					
-				?>
+			<div class="campo-mensagem">
+			<?php
+				if(getMensagemErro()!=null){
+					echo "<div class='mensagem-erro'>";
+					echo getMensagemErro();
+					echo "</div>";
+				}
+				if(getMensagemErro()==null){
+					echo "<div class='mensagem-sucesso'>";
+					echo getMensagemSucesso();
+					echo "</div>";
+				}
+			?>			
+			
 			</div>
 			
 			<input type="submit" value="Enviar" id="subm">
 			
 		</fieldset>
 	</form>
+	
+	<?php
+	
+	 if(getResultado()!=null){
+		echo "<fieldset class='fieldResult'><legend>Resultado</legend>";
+		echo getResultado();
+		echo "</fieldset>";	
+		
+	}	
+	?>
+
+
+	<!--
+	<div class="debug">		
+			<?php					
+				var_dump(getMensagemErro());
+				echo "<br><br>";
+				var_dump(getMensagemSucesso());
+			?>		
+	</div>
+	-->
+<hr>
+
+<button id="botaoLimpar"><a href="limpaSessoes.php" title="Limpa variáveis de sessão e reseta tudo">Limpar Sessões</a></button>
 
 
 
